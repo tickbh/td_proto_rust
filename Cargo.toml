@@ -1,0 +1,7 @@
+[package]
+name = "td_rp"
+version = "0.1.0"
+authors = ["wgd <wgd@qq.com>"]
+
+[dependencies]
+rustc-serialize = "0.3.16"

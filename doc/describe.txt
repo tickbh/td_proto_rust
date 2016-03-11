@@ -1,0 +1,22 @@
+support types 
+    "none", "u8",   "i8",   "u16",   "i16",   "u32",   "i32",   "float",   "string",   "raw",   "map",
+            "u8[]", "i8[]", "u16[]", "i16[]", "u32[]", "i32[]", "float[]", "string[]", "raw[]", "map[]"
+
+"field" : {
+	"name"                  : { "index" :    1, "type" : "string" }
+}
+
+"protol": {
+	"cmd_achieve_op"        : { "index" :    1, "args" : [ "map" ] }
+}
+数据以Id, Type, Data格式连续进行存储，以小端格式存储，Id占2个字节(0-65536)，Type占2个字节
+Id	Type	Data
+Data读取
+"none"                                   该数据已读取完，通常做为标识
+"u8",   "i8",   "u16",   "i16" 以两个字节进行读取
+"u32",  "i32",  "float"        以四个字节进行读取，float为读取i32值除以1000得出
+"string",  "raw"               先读二个字节的长度，然后根据长度再读出数据
+"map"
+	持续读取Data，直到读取到Id=0，type="none"时map结束
+数组
+写入一个个数据，结束时时写入id为0，type为0的数据

@@ -1,0 +1,14 @@
+{
+	"types" : [
+		"none", "u8",   "i8",   "u16",   "i16",   "u32",   "i32",   "float",   "string",   "raw",   "map",
+				"u8[]", "i8[]", "u16[]", "i16[]", "u32[]", "i32[]", "float[]", "string[]", "raw[]", "map[]"
+	],
+	"field" : {
+		"name"                  : { "index" :    1, "pattern" : "string" },
+		"index"                 : { "index" :    2, "pattern" : "u16" },
+		"name1"                 : { "index" :    3, "pattern" : "string" }
+	},
+	"proto": {
+		"cmd_achieve_op"        : { "index" :    1, "args" : [ "map" ] }
+	}
+}
