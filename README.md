@@ -16,7 +16,7 @@ data will be format like as Id, Type, Data store by little endian, Id is 2bytes,
 
 # example data u8
 ```rust
-extern crate td_rp;
+extern crate td_proto_rust;
 use td_rp::{Value, Config, Buffer};
 
 fn test_head_field(buffer : &mut Buffer, index : u16, t : u16) {
@@ -67,7 +67,7 @@ fn test_encode_u8() {
 
 # example proto
 ```rust
-extern crate td_rp;
+extern crate td_proto_rust;
 use td_rp::{Value, Config, Buffer};
 
 fn test_base_proto() {

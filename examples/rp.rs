@@ -1,4 +1,4 @@
-extern crate td_rp;
+extern crate td_proto_rust as td_rp;
 
 use std::fs::File;
 use std::io::prelude::*;

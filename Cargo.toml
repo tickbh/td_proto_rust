@@ -1,5 +1,5 @@
 [package]
-name = "td_rp"
+name = "td_proto_rust"
 version = "0.1.0"
 authors = ["wgd <wgd@qq.com>"]
 

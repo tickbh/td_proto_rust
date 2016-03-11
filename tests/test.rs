@@ -1,4 +1,4 @@
-extern crate td_rp;
+extern crate td_proto_rust as td_rp;
 use td_rp::{Value, Config, Buffer};
 
 use std::io::prelude::*;
