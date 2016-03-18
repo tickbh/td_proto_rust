@@ -1,6 +1,7 @@
 use std::io::{Read, Write, Result};
 use std::ptr;
 use std::fmt;
+use std::cmp;
 
 pub struct Buffer {
     val   : Vec<u8>,
@@ -40,6 +41,13 @@ impl Buffer {
     pub fn get_wpos(&self) -> usize {
         self.wpos
     }
+
+    pub fn drain(&mut self, pos : usize) -> Vec<u8> {
+        self.rpos = self.rpos - cmp::min(self.rpos, pos);
+        self.wpos = self.wpos - cmp::min(self.wpos, pos);
+        let pos = cmp::min(self.val.len(), pos);
+        self.val.drain(..pos).collect()
+    }
 }
 
 impl fmt::Debug for Buffer {
@@ -70,6 +78,7 @@ impl Write for Buffer {
         self.wpos += buf.len();
         Ok(buf.len())
     }
+
     fn flush(&mut self) -> Result<()> {
         Ok(())
     }
