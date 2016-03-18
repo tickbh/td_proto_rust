@@ -181,7 +181,7 @@ pub fn decode_proto(buffer : &mut Buffer, config : &Config) -> RpResult<(String,
         }
         value.push(sub_value);
     }
-    let proto = config.get_proto_type(&name);
+    let proto = config.get_proto_by_name(&name);
     match proto {
         Some(val) => {
             if val.args.len() != value.len() {

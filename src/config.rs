@@ -97,14 +97,24 @@ impl Config {
         Some(Self::new_by_map(field.ok().unwrap(), proto.ok().unwrap()))
     }
 
-    pub fn get_index_type(&self, name : &String) -> Option<&Field> {
+    pub fn get_field_by_name(&self, name : &String) -> Option<&Field> {
         self.field.get(name)
     }
 
-    pub fn get_proto_type(&self, name : &String) -> Option<&Proto> {
+    pub fn get_field_by_index(&self,  index : &u16) -> Option<&Field> {
+        let name = unwrap_or!(self.get_field_index_name(index), return None);
+        self.field.get(name)
+    }
+
+    pub fn get_proto_by_name(&self, name : &String) -> Option<&Proto> {
         self.proto.get(name)
     }
 
+    pub fn get_proto_by_index(&self,  index : &u16) -> Option<&Proto> {
+        let name = unwrap_or!(self.get_proto_index_name(index), return None);
+        self.proto.get(name)
+    }
+    
     pub fn get_field_index_name(&self, index : &u16) -> Option<&String> {
         self.index_field.get(index)
     }

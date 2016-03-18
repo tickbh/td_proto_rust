@@ -3,6 +3,8 @@ use std::error;
 use std::fmt;
 use std::io;
 
+pub const TYPE_STEP    : u16 = 20;
+
 pub const TYPE_NIL     : u16 =  0;
 pub const TYPE_U8      : u16 =  1;
 pub const TYPE_I8      : u16 =  2;

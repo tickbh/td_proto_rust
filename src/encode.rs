@@ -79,7 +79,7 @@ pub fn encode_map(buffer : &mut Buffer, config : &Config, value : &Value) -> RpR
     match *value {
         Value::Map(ref val) => {
             for (name, sub_value) in val {
-                if try!(write_field(buffer, config.get_index_type(name))) {
+                if try!(write_field(buffer, config.get_field_by_name(name))) {
                     try!(encode_field(buffer, config, sub_value));    
                 }
             }
@@ -130,7 +130,7 @@ pub fn encode_field(buffer : &mut Buffer, config : &Config, value : &Value) -> R
 }
 
 pub fn encode_proto(buffer : &mut Buffer, config : &Config, name : &String, infos : Vec<Value>) -> RpResult<()> {
-    let proto = config.get_proto_type(name);
+    let proto = config.get_proto_by_name(name);
     ensure!(proto.is_some(), (ErrorKind::MissingError, "missing the name protocol"));
     let proto = proto.unwrap();
     let name = config.get_proto_index_name(&proto.index);

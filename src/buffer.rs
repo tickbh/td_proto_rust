@@ -17,6 +17,10 @@ impl Buffer {
         }
     }
 
+    pub fn get_data(&self) -> &Vec<u8> {
+        &self.val
+    }
+
     pub fn len(&self) -> usize {
         self.val.len()
     }
