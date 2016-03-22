@@ -66,6 +66,9 @@ pub fn decode_str_raw(buffer : &mut Buffer, pattern : u16) -> RpResult<Value>  {
     match pattern {
         TYPE_STR => {
             let len : u16 = try!(decode_number(buffer, TYPE_U16)).into();
+            if len == 0 {
+                return Ok(Value::from("".to_string()));
+            }
             let mut rv = vec![0; len as usize];
             try_read!(buffer.read(&mut rv[..]), len as usize);
             let val = String::from_utf8(rv);
