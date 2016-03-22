@@ -74,6 +74,9 @@ impl Write for Buffer {
         if self.val.len() < self.wpos + buf.len() {
             self.val.resize(self.wpos + buf.len(), 0);
         }
+        if buf.len() == 0 {
+            return Ok(buf.len());
+        }
         unsafe { ptr::copy(&buf[0], &mut self.val[self.wpos], buf.len()); }
         self.wpos += buf.len();
         Ok(buf.len())
