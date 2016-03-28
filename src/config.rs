@@ -9,7 +9,7 @@ pub struct Field {
 
 #[derive(RustcDecodable, Debug)]
 pub struct Proto {
-    pub index   : u16,
+    pub msg_type: String,
     pub args    : Vec<String>,
 }
 
@@ -18,7 +18,7 @@ pub struct Config {
     field : HashMap<String, Field>,
     proto : HashMap<String, Proto>,
     index_field : HashMap<u16, String>,
-    index_proto : HashMap<u16, String>,
+    msg_proto   : HashMap<String, String>,
 }
 
 impl Field {
@@ -49,23 +49,23 @@ impl Config {
             field : HashMap::new(),
             proto : HashMap::new(),
             index_field : HashMap::new(),
-            index_proto : HashMap::new(),
+            msg_proto   : HashMap::new(),
         }
     }
     pub fn new_by_map(field : HashMap<String, Field>, proto : HashMap<String, Proto>) -> Config {
         let mut index_field : HashMap<u16, String> = HashMap::new();
-        let mut index_proto : HashMap<u16, String> = HashMap::new();
+        let mut msg_proto   : HashMap<String, String> = HashMap::new();
         for (name, f) in &field {
             index_field.insert(f.index, name.clone());
         }
         for (name, p) in &proto {
-            index_proto.insert(p.index, name.clone());
+            msg_proto.insert(name.clone(), p.msg_type.clone());
         }
         Config {
             field : field,
             proto : proto,
             index_field : index_field,
-            index_proto : index_proto,
+            msg_proto : msg_proto,
         }
     }
 
@@ -109,17 +109,12 @@ impl Config {
     pub fn get_proto_by_name(&self, name : &String) -> Option<&Proto> {
         self.proto.get(name)
     }
-
-    pub fn get_proto_by_index(&self,  index : &u16) -> Option<&Proto> {
-        let name = unwrap_or!(self.get_proto_index_name(index), return None);
-        self.proto.get(name)
-    }
     
     pub fn get_field_index_name(&self, index : &u16) -> Option<&String> {
         self.index_field.get(index)
     }
 
-    pub fn get_proto_index_name(&self, index : &u16) -> Option<&String> {
-        self.index_proto.get(index)
+    pub fn get_proto_msg_type(&self, name : &String) -> Option<&String> {
+        self.msg_proto.get(name)
     }
 }

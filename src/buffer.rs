@@ -59,7 +59,7 @@ impl fmt::Debug for Buffer {
 impl Read for Buffer {
     fn read(&mut self, buf: &mut [u8]) -> Result<usize> {
         let left = self.val.len() - self.rpos;
-        if left == 0 {
+        if left == 0 || buf.len() == 0 {
             return Ok(0);
         }
         let read = if left > buf.len() { buf.len() } else { left };

@@ -133,11 +133,8 @@ pub fn encode_proto(buffer : &mut Buffer, config : &Config, name : &String, info
     let proto = config.get_proto_by_name(name);
     ensure!(proto.is_some(), (ErrorKind::MissingError, "missing the name protocol"));
     let proto = proto.unwrap();
-    let name = config.get_proto_index_name(&proto.index);
-    ensure!(name.is_some(), (ErrorKind::MissingError, "miss the name data"));
     ensure!(proto.args.len() == infos.len(), (ErrorKind::TypeNotMatchError, "the data num not match protocol args num"));
-    let name = name.map(|s| s.clone());
-    try!(encode_str_raw(buffer, &Value::Str(name.unwrap())));
+    try!(encode_str_raw(buffer, &Value::Str(name.clone())));
     for info in &infos {
         //TODO match args
         try!(encode_field(buffer, config, info));

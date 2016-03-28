@@ -169,7 +169,7 @@ fn test_encode_map() {
     let config = td_rp::Config::new(" { \"name\" : { \"index\" :    1, \"pattern\" : \"string\" }, \
                                         \"index\" : { \"index\" :    2, \"pattern\" : \"u16\" },  \
                                         \"sub_name\" : { \"index\" :    3, \"pattern\" :\"string\" }   }",
-        "{\"cmd_test_op\"        : { \"index\" :    1, \"args\" : [ \"map\" ] }}");
+        "{\"cmd_test_op\"        : { \"msg_type\" :    \"server\", \"args\" : [ \"map\" ] }}");
     let config = config.unwrap();
     let mut hash_value = HashMap::<String, Value>::new();
     hash_value.insert("name".to_string(), Value::Str("I'm a chinese people".to_string()));
@@ -228,7 +228,7 @@ fn test_base_proto() {
     let config = td_rp::Config::new(" { \"name\" : { \"index\" :    1, \"pattern\" : \"string\" }, \
                                         \"index\" : { \"index\" :    2, \"pattern\" : \"u16\" },  \
                                         \"sub_name\" : { \"index\" :    3, \"pattern\" :\"string\" }   }",
-        "{\"cmd_test_op\"        : { \"index\" :    1, \"args\" : [ \"map\" ] }}");
+        "{\"cmd_test_op\"        : { \"msg_type\" :    \"server\", \"args\" : [ \"map\" ] }}");
     let config = config.unwrap();
     let mut hash_value = HashMap::<String, Value>::new();
     hash_value.insert("name".to_string(), Value::Str("I'm a chinese people".to_string()));
