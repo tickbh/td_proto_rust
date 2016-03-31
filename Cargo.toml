@@ -1,7 +1,13 @@
 [package]
 name = "td_proto_rust"
 version = "0.1.0"
-authors = ["wgd <wgd@qq.com>"]
+authors = [ "tickbh <tickdream125@hotmail.com>" ]
+
+description = "bin protocol for Rust"
+repository = "https://github.com/tickbh/td_proto_rust"
+readme = "README.md"
+license = "MIT/Apache-2.0"
+keywords = ["protocol", "Google Protocol Buffer"]
 
 [dependencies]
 rustc-serialize = "0.3.16"
