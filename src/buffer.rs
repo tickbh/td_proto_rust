@@ -4,17 +4,17 @@ use std::fmt;
 use std::cmp;
 
 pub struct Buffer {
-    val   : Vec<u8>,
-    rpos  : usize,
-    wpos  : usize,
+    val: Vec<u8>,
+    rpos: usize,
+    wpos: usize,
 }
 
 impl Buffer {
     pub fn new() -> Buffer {
         Buffer {
-            val   : Vec::new(),
-            rpos  : 0,
-            wpos  : 0,
+            val: Vec::new(),
+            rpos: 0,
+            wpos: 0,
         }
     }
 
@@ -26,7 +26,7 @@ impl Buffer {
         self.val.len()
     }
 
-    pub fn set_rpos(&mut self, rpos : usize) {
+    pub fn set_rpos(&mut self, rpos: usize) {
         self.rpos = rpos;
     }
 
@@ -34,7 +34,7 @@ impl Buffer {
         self.rpos
     }
 
-    pub fn set_wpos(&mut self, wpos : usize) {
+    pub fn set_wpos(&mut self, wpos: usize) {
         self.wpos = wpos;
     }
 
@@ -42,7 +42,7 @@ impl Buffer {
         self.wpos
     }
 
-    pub fn drain(&mut self, pos : usize) -> Vec<u8> {
+    pub fn drain(&mut self, pos: usize) -> Vec<u8> {
         self.rpos = self.rpos - cmp::min(self.rpos, pos);
         self.wpos = self.wpos - cmp::min(self.wpos, pos);
         let pos = cmp::min(self.val.len(), pos);
@@ -62,8 +62,14 @@ impl Read for Buffer {
         if left == 0 || buf.len() == 0 {
             return Ok(0);
         }
-        let read = if left > buf.len() { buf.len() } else { left };
-        unsafe { ptr::copy(&self.val[self.rpos], &mut buf[0], read); }
+        let read = if left > buf.len() {
+            buf.len()
+        } else {
+            left
+        };
+        unsafe {
+            ptr::copy(&self.val[self.rpos], &mut buf[0], read);
+        }
         self.rpos += read;
         Ok(read)
     }
@@ -77,7 +83,9 @@ impl Write for Buffer {
         if buf.len() == 0 {
             return Ok(buf.len());
         }
-        unsafe { ptr::copy(&buf[0], &mut self.val[self.wpos], buf.len()); }
+        unsafe {
+            ptr::copy(&buf[0], &mut self.val[self.wpos], buf.len());
+        }
         self.wpos += buf.len();
         Ok(buf.len())
     }

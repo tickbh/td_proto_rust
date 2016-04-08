@@ -1,6 +1,8 @@
 # td_rp
 tickbh rust bin protocol
 
+[![Build Status](https://api.travis-ci.org/tickbh/td_proto_rust.svg?branch=master)](https://travis-ci.org/tickbh/td_proto_rust)
+
 ## suport type
 base type is contain "u8",   "i8",   "u16",   "i16",   "u32",   "i32",   "float",   "string",   "raw",   "map"
 
