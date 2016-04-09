@@ -48,6 +48,12 @@ impl Buffer {
         let pos = cmp::min(self.val.len(), pos);
         self.val.drain(..pos).collect()
     }
+
+    pub fn clear() {
+        self.val.clear();
+        self.rpos = 0;
+        self.wpos = 0;
+    }
 }
 
 impl fmt::Debug for Buffer {
