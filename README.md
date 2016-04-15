@@ -10,7 +10,8 @@ array type is contain "u8[]", "i8[]", "u16[]", "i16[]", "u32[]", "i32[]", "float
 
 # data detail
 data will be format like as Id, Type, Data store by little endian, Id is 2bytes, Type is 2bytes
- - "u8",   "i8",   "u16",   "i16" -- 2bytes 
+ - "u8",   "i8"                   -- 1bytes 
+ - "u16",   "i16"                 -- 2bytes
  - "u32",  "i32",  "float"        -- 4bytes, float decode with i32 div 1000
  - "string",  "raw"               -- 2bytes len, len bytes datas
  - map                            -- key always encode string, contains id, type, value is base value, end will key type is nil
@@ -65,7 +66,7 @@ fn test_encode_u8() {
 }
 ```
 >the bytes is  
->[0, 0, 1, 0, 1, 0] -- [0, 0] is id = 0, [1, 0] is type = 1 is TYPE_U8, [1, 0] is data is 1u8
+>[0, 0, 1, 0, 1] -- [0, 0] is id = 0, [1, 0] is type = 1 is TYPE_U8, [1] is data is 1u8
 
 # example proto
 ```rust

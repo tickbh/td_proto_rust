@@ -18,12 +18,12 @@ use {get_name_by_type, get_type_by_name};
 pub fn decode_number(buffer: &mut Buffer, pattern: u16) -> RpResult<Value> {
     match pattern {
         TYPE_U8 => {
-            let data: &mut [u8; 2] = &mut [0, 0];
+            let data: &mut [u8; 1] = &mut [0];
             try_read!(buffer.read(data), data.len());
             Ok(Value::from(data[0]))
         }
         TYPE_I8 => {
-            let data: &mut [u8; 2] = &mut [0, 0];
+            let data: &mut [u8; 1] = &mut [0];
             try_read!(buffer.read(data), data.len());
             Ok(Value::from(data[0] as i8))
         }

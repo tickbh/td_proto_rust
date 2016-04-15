@@ -32,11 +32,10 @@ fn test_encode_u8() {
     // first read field
     test_head_field(&mut buffer, 0, td_rp::TYPE_U8);
     // after index type is data
-    let data: &mut [u8; 2] = &mut [0, 0];
+    let data: &mut [u8; 1] = &mut [0];
     let size = buffer.read(data).unwrap();
-    assert_eq!(size, 2);
+    assert_eq!(size, 1);
     assert_eq!(data[0], 1);
-    assert_eq!(data[1], 0);
 
     // second read field
     let read = td_rp::decode_field(&mut buffer, &config).unwrap();
