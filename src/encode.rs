@@ -65,7 +65,7 @@ pub fn encode_str_raw(buffer: &mut Buffer, value: &Value) -> RpResult<()> {
             try!(encode_number(buffer, &Value::U16(val.len() as u16)));
             try!(append_and_align(buffer, &val[..]));
         }
-        _ => unreachable!("encode_number only"),
+        _ => unreachable!("encode_str_raw only"),
     }
     Ok(())
 }
@@ -80,7 +80,7 @@ pub fn encode_map(buffer: &mut Buffer, config: &Config, value: &Value) -> RpResu
             }
             try!(write_str_field(buffer, STR_TYPE_NIL));
         }
-        _ => unreachable!("encode_number only"),
+        _ => unreachable!("encode_map only"),
     }
     Ok(())
 }
