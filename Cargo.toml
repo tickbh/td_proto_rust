@@ -1,6 +1,6 @@
 [package]
 name = "td_proto_rust"
-version = "0.1.2"
+version = "0.1.3"
 authors = [ "tickbh <tickdream125@hotmail.com>" ]
 
 description = "bin protocol for Rust"
