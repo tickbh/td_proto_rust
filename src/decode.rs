@@ -69,7 +69,7 @@ pub fn decode_str_raw(buffer: &mut Buffer, pattern: u16) -> RpResult<Value> {
         TYPE_STR => {
             let len: u16 = try!(decode_number(buffer, TYPE_U16)).into();
             if len == 0 {
-                return Ok(Value::from("".to_string()));
+                return Ok(Value::from(String::new()));
             }
             let mut rv = vec![0; len as usize];
             try_read!(buffer.read(&mut rv[..]), len as usize);
@@ -81,6 +81,9 @@ pub fn decode_str_raw(buffer: &mut Buffer, pattern: u16) -> RpResult<Value> {
         }
         TYPE_RAW => {
             let len: u16 = try!(decode_number(buffer, TYPE_U16)).into();
+            if len == 0 {
+                return Ok(Value::from(vec![]))
+            }
             let mut rv = vec![0; len as usize];
             try_read!(buffer.read(&mut rv[..]), len as usize);
             Ok(Value::from(rv))
